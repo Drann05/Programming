@@ -1,0 +1,43 @@
+/*
+ Program for calculating the height of a wave 
+ considering that every kilometer the wave is halved. 
+ In the end it will show how many kilometers should 
+ the wave travel to reach height 0.
+ 
+ written by Gioele Spanò - 7 Ottobre 2021
+ C tested with Codeblocks on Windows 10  64 bit
+ */
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    int h;
+    int h1;
+    int k;
+
+
+    do{
+      printf("Enter wave's height in meters (greater than 0): ");
+     scanf("%d", &h);
+      printf("Enter wave's mileage in kilometers (greater than 0): ");
+      scanf("%d", &k);
+    }while(h<1 || k<1);
+    h1=h;
+    h=h/2*k;
+    if(h<1){
+        printf("0 meters");
+    }else{
+        printf("%d\n", h);
+    }
+    h = h1;
+    k = 1;
+    do{
+        h1 = h;
+        h1 = h1 / pow(2,k);
+        k = k+1;
+    }while(h1 > 1);
+    printf("The kilometers to travel to reach height 0 are %d", k);
+    return 0;
+}
