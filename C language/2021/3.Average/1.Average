@@ -1,0 +1,31 @@
+/*
+ Program to print out the average weight of n items.
+
+ written by Gioele Spanò - 20 November 2021
+ C tested with Codeblocks on Windows 10  64 bit
+ */
+
+#include <stdio.h>
+
+int main()
+{
+
+    int weight,i,choice;
+    float weight1=0;
+
+    do{
+        do{
+            printf("Enter the weight (between 0 and 10): ");
+            scanf("%d", &weight);
+        }while(weight<0 || weight>10);
+            weight1 = weight1 + weight;
+            i++;
+        do{
+        printf("Do you want to add other items?\n1->Yes\n0->No\n");
+        scanf("%d", &choice);
+        }while(choice < 0 || choice > 1);
+    }while(choice == 1);
+    weight1=weight1/i;
+    printf("The average weight is %.2f kg", weight1);
+    return 0;
+}
