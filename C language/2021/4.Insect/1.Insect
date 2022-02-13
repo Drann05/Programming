@@ -28,5 +28,6 @@ int main()
         n--;
     }while(n>0 && p<m);
     printf("the monthly growth is %d insects for a maximum of %d",p,m);
+    
     return 0;
 }
