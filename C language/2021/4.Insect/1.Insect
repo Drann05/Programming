@@ -1,0 +1,32 @@
+/*
+ Program to print out an insect population after n months.
+
+ written by Gioele Spanò - 7 December 2021
+ C tested with Codeblocks on Windows 10  64 bit
+ */
+
+#include <stdio.h>
+
+int main()
+{
+    int m, k, n, p;
+
+    printf("Enter the maximum population: ");
+    scanf("%d", &m);
+    do{
+    printf("Enter the starting population (between 2 and the maximum population): ");
+    scanf("%d", &p);
+    }while(p < 2 || p > m);
+    printf("Enter growth constant: ");
+    scanf("%d", &k);
+    do{
+    printf("Enter the number of months (greater than 0): ");
+    scanf("%d", &n);
+    }while(n<=0);
+    do{
+    p=p+k*p*(1-p/m);
+    n--;
+    }while(n>0 && p<m);
+    printf("the monthly growth is %d insects for a maximum of %d",p,m);
+    return 0;
+}
