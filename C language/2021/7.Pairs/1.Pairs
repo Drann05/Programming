@@ -1,0 +1,32 @@
+/*
+Program to print out the number of pairs that have a number k as their product.
+
+ written by Gioele Spanò - ? ? 2021
+ C18 tested with CodeBlocks on Windows 10 64 bit
+ */
+#include <stdio.h>
+int main()
+{
+	int k, count=0, choice;
+	float num1, num2;
+	do {
+		printf("Enter the initial value: ");
+		scanf("%d", &k);
+	} while (k < 0);
+	do {
+		do {
+			printf("Enter a pair of values(ex. 3 2) ");
+			scanf("%f%f", &num1, &num2);
+		} while (num1 < 0 || num2 < 0);
+		do {
+			printf("Do you wish to continue?\n1: Yes\n0: No\n");
+			scanf("%d", &choice);
+		} while (choice != 0 && choice != 1);
+		if (num1 * num2 == k) {
+			count = count + 1;
+		}
+	} while (choice == 1);
+	printf("The pairs of values that have k as their product are %d", count);
+
+return 0;
+}
