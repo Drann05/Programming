@@ -2,7 +2,7 @@
  Program to print out an insect population after n months.
 
  written by Gioele Spanò - 7 December 2021
- C tested with Codeblocks on Windows 10  64 bit
+ C18 tested with Codeblocks on Windows 10  64 bit
  */
 
 #include <stdio.h>
