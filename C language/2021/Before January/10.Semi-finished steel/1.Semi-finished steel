@@ -1,0 +1,31 @@
+/*
+Program to print out the thickness of a semi-finished steel after passing through n rolling mills.
+
+ written by Gioele Spanò - ? ? 2021
+ C18 tested with CodeBlocks on Windows 10 64 bit
+ */
+
+#include <stdio.h>
+int main()
+{
+
+
+	int rm, rm2;
+	float thickness1, thickness2;
+	do {
+		printf("Enter the initial thickness of semi-finished steel: ");
+		scanf("%f", &thickness1);
+		thickness2 = thickness1;
+	} while (thickness1 <= 0);
+	do {
+		printf("Enter the number of rolling mills used: "); \
+		scanf("%d", &rm);
+	} while (rm < 1);
+	for (rm2 = 0; rm2 <= rm; rm2++){
+		thickness1 = thickness1 - (thickness1 / 10);
+	}
+	printf("The thickness is %.2fcm\n", thickness1);
+
+    return 0;
+    
+}
