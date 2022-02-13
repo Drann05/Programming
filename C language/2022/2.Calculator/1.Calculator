@@ -1,1 +1,245 @@
+/*
+Calculator with sum, subtraction, multiplication, division, power, factorial
+greater number, smaller number, average, parable function, hyperbole function, 
+straight function.
 
+ written by Gioele Spanò - 12 February 2021
+ C18 tested with CodeBlocks on Windows 10 64 bit
+ */
+
+#include <stdio.h>
+#include <math.h>
+
+/*-------------Functions declarations-------------*/
+float sum(float num1,float num2);
+float sub(float num1,float num2);
+float mul(float num1,float num2);
+float div(float num1,float num2);
+float powe(float num1,float num2);
+float fact(float num1);
+float max(float num1, float num2);
+float min(float num1, float num2);
+float min(float num1, float num2);
+float average(float num1, float num2,int i);
+float parable(float a, float b, float c, float x);
+float hyperbole(float a, float b);
+float straight(float a,float b, float x);
+    /*-----------------------------------*/
+
+void menu();
+
+void main()
+{
+    int op, i, choice;
+    float num1,num2;
+    do{                                                             //post-conditioned loop to return or not to the menu.
+        menu();
+        do{
+        printf("\nEnter the operator: ");
+        scanf("%d", &op);
+        }while(op < 1 || op > 12);
+    /*-------------Parable, Hyperbole, Straight-------------*/
+        if(op==10 || op==11 || op==12){
+                float a,b,c,x;
+        do{                                                         //post-conditioned loop to repeat or not the operation.
+            switch(op){
+            case 10:                                            //Parable
+                printf("Formula: y=a*x^2+b*x+c\n");
+                printf("Enter a: ");
+                scanf("%f", &a);
+                printf("Enter b: ");
+                scanf("%f", &b);
+                printf("Enter c: ");
+                scanf("%f", &c);
+                printf("Enter x: ");
+                scanf("%f", &x);
+                num1=parable(a,b,c,x);
+                break;
+            case 11:                                            //Hyperbole
+                printf("Formula: sqrt(a^2+b^2)/b\n");
+                printf("Enter a: ");
+                scanf("%f", &a);
+                printf("Enter b: ");
+                scanf("%f", &b);
+                num1=hyperbole(a,b);
+                break;
+
+            case 12:                                            //Straight
+                printf("Formula: ax+b\n");
+                printf("Enter a: ");
+                scanf("%f", &a);
+                printf("Enter b: ");
+                scanf("%f", &b);
+                printf("Enter x: ");
+                scanf("%f", &x);
+                num1=straight(a,b,x);
+                break;
+            }
+            printf("\nResult: %.2f\n", num1);
+            do{
+                printf("\nDo you wish to continue?\n1:Yes\n0:No\n");
+                scanf("%d", &choice);
+            }while(choice < 0 || choice > 1);
+        }while(choice==1);
+
+        /*-----------------------------------*/
+
+        }else if(op!=10 || op!=11 || op!=12){
+            do{
+            printf("Enter a number: ");
+            scanf("%f", &num1);
+            }while(num1 < 0);
+            /*-------------Factorial-------------*/
+            if(op==6){
+            num1=fact(num1);
+
+            /*-----------------------------------*/
+
+            }else if(op!=6){
+
+                do{                                         //post-conditioned loop to repeat or not the operation.
+
+                    do{
+                        printf("Enter a number: ");
+                        scanf("%f", &num2);
+                        i++;                                 //Counter for average
+                    }while(num2 < 0);
+
+                    switch(op){
+                    case 1:
+                        num1=sum(num1,num2);    //Sum
+                        break;
+                    case 2:
+                        num1=sub(num1,num2);    //Subtraction
+                        break;
+                    case 3:
+                        num1=mul(num1,num2);        //Multiplication
+                        break;
+                    case 4:
+                        num1=div(num1,num2);        //Division
+                        break;
+                    case 5:
+                        num1=powe(num1,num2);        //Power
+                        break;
+                    case 7:
+                        num1=max(num1,num2);        //Greater
+                        break;
+                    case 8:
+                        num1=min(num1,num2);        //Smaller
+                        break;
+                    case 9:
+                        num1=average(num1,num2,i);      //Average
+
+                    default:
+                        printf("\nEnter a valid operator");        //Operator not valid
+                        }
+
+                        printf("\nResult: %.2f\n", num1);
+
+                    do{
+                        printf("\nDo you wish to continue?\n1:Yes\n0:No\n");
+                        scanf("%d", &choice);
+                    }while(choice < 0 || choice > 1);
+
+                }while(choice == 1);
+            }
+        }
+        printf("\nDigit 1 to return at the menu, any other number to end the program\n");
+        scanf("%d", &choice);
+    }while(choice==1);
+}
+
+/*-------------Menu function-------------*/
+void menu(){
+    printf("Operations: \n1: Sum\n2: Subtraction\n");
+    printf("3: Multiplication\n4: Division\n5: Power\n");
+    printf("6: Factorial\n7: Greater number\n8: Smaller number\n9: Average\n");
+    printf("10: Parable\n11: Hyperbole\n12: Straight");
+}
+
+
+/*-------------Sum function-------------*/
+float sum(float num1,float num2){
+    return num1+num2;
+}
+
+
+/*-------------Subtraction function-------------*/
+float sub(float num1,float num2){
+    return num1-num2;
+}
+
+
+/*-------------Multiplication function-------------*/
+float mul(float num1,float num2){
+    return num1*num2;
+}
+
+
+/*-------------Division function-------------*/
+float div(float num1,float num2){
+    if(num2==0){
+        printf("Not divisible by 0");
+    }
+    else{
+        return num1/num2;
+    }
+
+}
+
+
+/*-------------Power function-------------*/
+float powe(float num1,float num2){
+    int num3=num1;
+    for(int i=1;i<num2;i++)
+    return num1*num3;
+}
+
+
+/*-------------Factorial function-------------*/
+float fact(float num1){
+        for(int i=num1-1;i>1;i--)
+                num1=num1*i;
+    return num1;
+}
+
+
+/*-------------Greater function-------------*/
+float max(float num1, float num2){
+if(num1<num2) num1=num2;
+    return num1;
+}
+
+
+/*-------------Smaller function-------------*/
+float min(float num1, float num2){
+if(num1<num2){
+    return num1;
+        }else return num2;
+
+}
+
+
+/*-------------Average function-------------*/
+float average(float num1, float num2,int i){
+    return (num1+num2)/i;
+}
+
+
+
+/*------------Parable function-------------*/
+float parable(float a, float b, float c, float x){
+    return a*x*x+b*x+c;
+}
+
+
+/*-------------Hyperbole function-------------*/
+float hyperbole(float a, float b){
+    return sqrt(a*a+b*b)/b;
+}
+
+
+/*-------------Straight function-------------*/
+float straight(float a,float b, float x){
+    return a*x+b;
+}
