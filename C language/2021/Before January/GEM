@@ -1,0 +1,45 @@
+/*
+Program to print out the number of values greater, equal and smaller than a k number.
+
+ written by Gioele Spanò - ? ? 2021
+ C18 tested with CodeBlocks on Windows 10 64 bit
+ */
+ 
+#include <stdio.h>
+int main()
+{
+	float k, num1;
+	int countMax = 0, countEq = 0, countMin = 0, choice;
+	do {
+		printf("Enter a k value: ");
+		scanf("%f", &k);
+	} while (k < 0);
+
+	do {
+		do {
+			printf("\nEnter a number: ");
+			scanf("%f", &num1);
+		} while (num1 < 0);
+		if (num1 > k)
+		{
+			countMax = countMax + 1;
+		}
+		if (num1 == k)
+		{
+			countEq = countEq + 1;
+		}
+		if (num1 < k)
+		{
+			countMin = countMin + 1;
+		}
+		do {
+			printf("Do you wish to continue?\n1: Yes\n0: No\n");
+			scanf("%d", &choice);
+		} while (choice != 0 && choice != 1);
+	} while (choice == 1);
+	printf("\nThe values greater than k are %d", countMax);
+	printf("\nThe values equal to k are %d", countEq);
+	printf("\nThe values smaller than k are %d", countMin);
+	
+	return 0;
+}
