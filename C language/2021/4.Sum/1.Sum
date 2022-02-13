@@ -4,8 +4,9 @@ Program to print out the number of values entered and their sum
  written by Gioele Spanò -  ? ? 2021
  C18 tested with Codeblocks on Windows 10  64 bit
  */
+ 
 #include <stdio.h>
-void main()
+int main()
 {
 	float num1, num2=0;
 	int cont=0;
@@ -18,4 +19,6 @@ void main()
             cont--;
 			printf("The number of entered numbers is ", cont);
 			printf("\nThe sum of the entered numbers is %.2f", num2);
+	
+	return 0;
 }
