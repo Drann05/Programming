@@ -1,3 +1,9 @@
+/*
+Program for vowels statistics in a text
+ written by Gioele Spanò - 9 February 2022
+ C++11 tested with Codeblock on Windows 10  64 bit
+ */
+
 #include <iostream>
 #include <cstring>
 
