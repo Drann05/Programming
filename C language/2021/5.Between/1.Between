@@ -1,0 +1,37 @@
+/*
+Program to print out the number of values included between two numbers.
+ 
+ written by Gioele Spanò - ? ? 2021
+ C18 tested with Codeblocks on Windows 10 64 bit
+ */
+ 
+#include <stdio.h>
+int main()
+{
+	float num1, num2, mid;
+	int count=0, choice;
+    do {
+        printf("Enter the first value: ");
+        scanf("%f", &num1);
+    } while (num1 < 0);
+    do {
+        printf("Enter the second value: ");
+        scanf("%f", &num2);
+    } while (num2 < 0);
+    do{
+        do {
+            printf("Enter a number: ");
+            scanf("%f", &mid);
+        } while (mid < 0);
+        do {
+            printf("Do you wish to continue?\n1: Yes\n0: No\n");
+            scanf("%d", &choice);
+        } while (choice != 0 && choice != 1);
+        if (mid>=num1 && mid<=num2  ) {
+            count = count + 1;
+        }
+    } while (choice == 1);
+	printf("the values included between %.2f and %.2f are %d",num1,num2,count);
+	
+	return 0;
+}
