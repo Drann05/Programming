@@ -5,7 +5,7 @@
  the wave travel to reach height 0.
  
  written by Gioele Spanò - 7 Ottobre 2021
- C tested with Codeblocks on Windows 10  64 bit
+ C18 tested with Codeblocks on Windows 10  64 bit
  */
 
 #include <stdio.h>
