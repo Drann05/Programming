@@ -1,0 +1,168 @@
+//1. EVITARE CHE DUE NAVI STIANO TROPPO VICINE TRA LORO (LA DISTANZA MINIMA DI OGNI NAVA DEVE ESSERE UN QUADRETTO). SPAZIO DA LASCIARE LIBERO IN UNA NAVE DA DUE:               //000
+                                                                                                                                                                                //010
+                                                                                                                                                                                //010
+                                                                                                                                                                                //000
+
+//2.MODIFICARE LA PARTE DI CODICE (CHE SI TROVA IN FONDO) IN MODO TALE DA FAR COLPIRE LE NAVI A TURNO, QUINDI FACENDO COLPIRE AL PLAYER1 LA MAPPA2 E AL PLAYER2 LA MAPPA1
+
+//3.FAR SÌ CHE LE NAVI VENGANO VISTE COME UNICA ENTITÀ E, SUCCESSIVAMENTE, RENDERE VISIBILE SE LA NAVE È AFFONDATA O MENO (IL MOTIVO PER IL QUALE SERVE CHE IL PROGRAMMA RICONOSCA UNA NAVE COME UNICA ENTITÀ.
+
+//4. GESTIONE DEI CONTROLLI:
+//SE LA NAVE NON ENTRA NELLA GRIGLIA NON DEVE ESSERE INSERITA (CERCARE //--- if(p2==10-(c-1) || p2==11-(c-1)) ---// e //-- if(p1==9-(c-1)) --// sia per il player 1 che 2)
+//SE VENGONO IMMESSE DELLE COORDINATE SBAGLIATE (MINORI DI 0 0 O MAGGIORI DI 9 9)
+
+
+//MODIFICHE:
+//ADESSO PER LA POSIZIONE DELLE NAVI SI PARTE DA 1, NON DA 0. DI CONSEGUENZA SI FINISCE A 10.
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+    int mappa[11][11] =
+    {
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    };
+
+    int p1,p2,verso, c=3;
+
+    printf("                                  -------------------------------\n");
+    printf("                                  |       BATTAGLIA NAVALE      |\n");
+    printf("                                  -------------------------------\n\n\n");
+
+
+    printf("                                  -------------------------------\n");
+    printf("                                  |           PLAYER1           |\n");
+    printf("                                  -------------------------------\n");
+do{
+    printf("Inserisci le coordinate in cui mettere la nave lunga %d nell'ordine (x,y): ", c);
+    scanf("%d", &p1);
+    scanf("%d", &p2);
+
+    printf("Inserisci il verso della nave\nVerticale: 1\nOrizzontale: 2\n");
+    scanf("%d", &verso);
+
+//COLLOCAZIONE NAVI (IMPLEMENTARE CON UNA FUNZIONE)
+    if(verso==1){
+        if(p2==11-(c-1) || p2==12-(c-1)){                      //Utilizzo la variabile che contiene la dimensione della nave per calcolare in quale posizione uscirebbe dalla griglia.
+            printf("Spazio insufficiente\n");
+        }
+        for(int i=0;i<c;i++){
+            mappa[p2][p1]=1;
+            p2++;
+        }
+
+    }else if(verso==2){
+        if(p1==11-(c-1)){
+            printf("Spazio insufficiente\n");
+        }
+        for(int i=0;i<c;i++){
+            mappa[p2][p1]=1;
+            p1++;
+        }
+    }
+    c--;
+
+
+//STAMPA A VIDEO LA MAPPA PER OGNI COORDINATA
+    for(int i=1;i<11;i++){
+        for(int j=1;j<11;j++){
+            printf("%d", mappa[i][j]);
+        }
+        printf("\n");
+    }
+
+}while(c>0);
+
+    int mappa2[11][11]=
+    {
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0},
+    };
+
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+    printf("                                  -------------------------------\n");
+    printf("                                  |           PLAYER2           |\n");
+    printf("                                  -------------------------------\n");
+do{
+    printf("Inserisci le coordinate in cui mettere la nave lunga %d nell'ordine (x,y): ", c);
+    scanf("%d", &p1);
+    scanf("%d", &p2);
+
+    printf("Inserisci il verso della nave\nVerticale: 1\nOrizzontale: 2\n");
+    scanf("%d", &verso);
+
+//COLLOCAZIONE NAVI (IMPLEMENTARE CON UNA FUNZIONE)
+    if(verso==1){
+        if(p2==11-(c-1) || p2==12-(c-1)){
+            printf("Spazio insufficiente\n");
+        }
+        for(int i=0;i<c;i++){
+            mappa2[p2][p1]=1;
+            p2--;
+        }
+
+    }else if(verso==2){
+        if(p1==11-(c-1)){
+            printf("Spazio insufficiente\n");
+        }
+        for(int i=0;i<c;i++){
+            mappa2[p2][p1]=1;
+            p1++;
+        }
+    }
+    c--;
+
+//STAMPA A VIDEO LA MAPPA PER OGNI COORDINATA
+    for(int i=1;i<11;i++){
+        for(int j=1;j<11;j++){
+            printf("%d", mappa2[i][j]);
+        }
+        printf("\n");
+    }
+
+}while(c>0);
+
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+    printf("Inserisci le coordinate del punto in cui sparare nell'ordine (x,y): ");
+    scanf("%d",&p1);
+    scanf("%d",&p2);
+
+    if(mappa2[p2][p1]==1){
+        printf("Bersaglio colpito!");
+    }
+    return 0;
+
+}
