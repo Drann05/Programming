@@ -44,7 +44,7 @@ int main(){
     printf("                                  |           PLAYER1           |\n");
     printf("                                  -------------------------------\n");
 do{
-    printf("Inserisci le coordinate in cui mettere la nave lunga %d nell'ordine (x,y): ", c);
+    printf("Inserisci le coordinate in cui mettere la nave lunga %d nell'ordine (x;y): ", c);
     scanf("%d", &p1);
     scanf("%d", &p2);
 
@@ -110,7 +110,7 @@ do{
     printf("                                  |           PLAYER2           |\n");
     printf("                                  -------------------------------\n");
 do{
-    printf("Inserisci le coordinate in cui mettere la nave lunga %d nell'ordine (x,y): ", c);
+    printf("Inserisci le coordinate in cui mettere la nave lunga %d nell'ordine (x;y): ", c);
     scanf("%d", &p1);
     scanf("%d", &p2);
 
