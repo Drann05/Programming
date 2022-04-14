@@ -3,7 +3,7 @@
                                                                                                                                                                                 //010
                                                                                                                                                                                 //000
 
-//2.MODIFICARE LA PARTE DI CODICE (CHE SI TROVA IN FONDO) IN MODO TALE DA FAR COLPIRE LE NAVI A TURNO, QUINDI FACENDO COLPIRE AL PLAYER1 LA MAPPA2 E AL PLAYER2 LA MAPPA1
+//2.MODIFICARE LA PARTE DI CODICE (CHE SI TROVA IN FONDO) IN MODO TALE DA CONTARE LE MOSSE E STABILIRE IL VINCITORE (VINCE CHI NE HA DI MENO)
 
 //3.FAR SÌ CHE LE NAVI VENGANO VISTE COME UNICA ENTITÀ E, SUCCESSIVAMENTE, RENDERE VISIBILE SE LA NAVE È AFFONDATA O MENO (IL MOTIVO PER IL QUALE SERVE CHE IL PROGRAMMA RICONOSCA UNA NAVE COME UNICA ENTITÀ.
 
