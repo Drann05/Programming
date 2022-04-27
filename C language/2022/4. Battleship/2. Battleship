@@ -1,0 +1,412 @@
+/*
+BATTAGLIA NAVALE
+
+ Scritto da Matteo Cestariolli, Luca Messina, Emanuele Minutella, Gioele Picone, Gioele Spanò
+ C18 testato con CodeBlocks su Windows 10 64 bit
+ */
+
+//tabella variabili: https://onedrive.live.com/edit.aspx?resid=D417618E2E4F9E8A!105&ithint=file%2cxlsx&authkey=!AKw_sKbaRbst14c
+
+
+
+//0: Acqua
+//1: Posizione della nave quando in fase di posizionamento. Posizione della nave colpita quando in fase d'attacco
+//2: Acqua colpita in fase d'attacco
+
+
+
+#include <stdio.h>
+#define R 10
+#define C 10
+
+
+void deploy(int map[][C], int *x, int *y, int dir, int *control, int *n, int rem1, int rem2);
+void init(int map[][C]);
+void print_map(int map[][C]);
+
+
+
+int main(){
+    //Inizializzazione e dichirazione delle mappe
+    int mappa[R][C];
+    int mappa2[R][C];
+    int mappa3[R][C];
+    int mappa4[R][C];
+    init(mappa);
+    init(mappa2);
+    init(mappa3);
+    init(mappa4);
+
+
+
+
+    int p1,p2,verso, c=3, c2=3, temp=0;
+
+    printf("                                  -------------------------------\n");
+    printf("                                  |       BATTAGLIA NAVALE      |\n");
+    printf("                                  |        GRIGLIA 10X10        |\n");
+    printf("                                  -------------------------------\n\n\n");
+
+
+    printf("                                  -------------------------------\n");
+    printf("                                  |           PLAYER1           |\n");
+    printf("                                  -------------------------------\n");
+
+
+
+
+
+do{                             //Esegue il ciclo finché tutte le navi non sono state inserite.
+
+    do{                         //Esegue il ciclo finché le navi non vengono inserite secondo i limiti prestabiliti (devono avere almeno un unità di distanza, non devono fuoriuscire dalla griglia 10x10).
+            temp=0;
+
+        do{
+            printf("Inserisci le coordinate in cui mettere la nave lunga %d nell'ordine (x;y): ", c);
+            scanf("%d", &p1);
+            scanf("%d", &p2);
+        }while(p1>10 || p1<1 || p2>10 || p2<1);
+            p1--;           //p1  parte da un'unità in meno per far sì che l'utente scegliendo la coordinata x (che va da 1 a 10) corrisponda con la matrice (che va da 0 a 9)
+            p2=10-p2;       //Bisogna fare una semplice sottrazione per evitare che l'ordinata parta dall'alto verso il basso
+        int j1=p2-1;
+        int k1=p1-1;
+
+        if(c>1){
+            do{
+                printf("Inserisci il verso della nave\nVerticale: 1\nOrizzontale: 2\n");
+                printf("Verso: ");
+                scanf("%d", &verso);
+            }while(verso!=1 && verso!=2);
+        }
+
+//COLLOCAZIONE NAVI
+
+    deploy(mappa, &p1, &p2, verso, &temp, &c, j1, k1);
+
+//STAMPA LA SCRITTA "ERROR" NEL CASO CI SIA UNA NAVE TROPPO VICINA A UN'ALTRA (1 DI DISTANZA)
+        if(temp==1){
+            printf("                                  -------------------------------\n");
+            printf("                                  |            ERROR            |\n");
+            printf("                                  -------------------------------\n");
+            c++;        //A questo punto c sarà 1 in meno. Dato che le navi sono state messe male lo facciamo tornare alla sua dimensione originale ed eseguiamo il loop in fondo
+        }
+
+
+//STAMPA A VIDEO LA MAPPA OGNI NAVE INSERITA
+print_map(mappa);
+    }while(temp==1);
+}while(c>0);
+
+printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+
+
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------PLAYER2---------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+    printf("                                  -------------------------------\n");
+    printf("                                  |           PLAYER2           |\n");
+    printf("                                  -------------------------------\n");
+
+     c=3;
+
+do{                             //Esegue il ciclo finché tutte le navi non sono state inserite
+
+    do{                         //Esegue il ciclo finché le navi non vengono inserite secondo i limiti prestabiliti (devono avere almeno un unità di distanza, non devono fuoriuscire dalla griglia 10x10)
+            temp=0;
+
+        do{
+            printf("Inserisci le coordinate in cui mettere la nave lunga %d nell'ordine (x;y): ", c);
+            scanf("%d", &p1);
+            scanf("%d", &p2);
+        }while(p1>10 || p1<1 || p2>10 || p2<1);
+            p1--;
+            p2--;
+        int j1=p2-1;
+        int k1=p1-1;
+        if(c>1){
+            printf("Inserisci il verso della nave\nVerticale: 1\nOrizzontale: 2\n");
+            printf("Verso: ");
+            scanf("%d", &verso);
+        }
+
+//COLLOCAZIONE NAVI (IMPLEMENTARE CON UNA FUNZIONE)
+deploy(mappa2, &p1, &p2, verso, &temp, &c, j1, k1);
+
+//STAMPA LA SCRITTA "ERROR" NEL CASO CI SIA UNA NAVE TROPPO VICINA A UN'ALTRA (1 DI DISTANZA)
+        if(temp==1){
+            printf("                                  -------------------------------\n");
+            printf("                                  |            ERROR            |\n");
+            printf("                                  -------------------------------\n");
+            c++;
+        }
+
+
+//STAMPA A VIDEO LA MAPPA OGNI NAVE INSERITA
+print_map(mappa2);
+    }while(temp==1);
+}while(c>0);
+
+printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------FASE DI ATTACCO-----------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+//Faccio ripartire c da 3 in maniera tale da concludere il loop una volta finite le navi
+c=3;
+
+//Inizializzo mappa3 e mappa4 per poter mostrare all'utente quali punti ha colpito (non posso utilizzare le due mappe precedenti perché altrimenti si vedrebbe la posizione delle navi)
+
+
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------PLAYER1 ATTACCO-----------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+do{
+    int change=0;   //Diventa 1 quando il player manca il bersaglio. Serve a passare all'altro player
+
+    do{
+    printf("                                  -------------------------------\n");
+    printf("                                  |           PLAYER1           |\n");
+    printf("                                  -------------------------------\n");
+        temp=0;
+
+//STAMPA A VIDEO LA MAPPA PER OGNI COLPO TIRATO
+print_map(mappa3);
+
+/*-----------COORDINATE ATTACCO-----------*/
+        do{
+            printf("Inserisci le coordinate del punto in cui sparare nell'ordine (x;y): ");
+            scanf("%d",&p1);
+            scanf("%d",&p2);
+        }while(p1>10 || p1<1 || p2>10 || p2<1);
+            p1--;
+            p2--;
+/*---------------------------------------*/
+
+
+
+/*-----------BERSAGLIO COLPITO-----------*/
+        if (mappa2[p2][p1]==1){
+
+        mappa2[p2][p1]=2;
+        mappa3[p2][p1]=1;
+
+      if (mappa2[p2-1][p1]==1 || mappa2[p2][p1-1]==1 || mappa2[p2+1][p1]==1 || mappa2[p2][p1+1]==1){
+
+    printf("                                --------------------------------------\n");
+    printf("                                |          BERSAGLIO COLPITO         |\n");
+    printf("                                --------------------------------------\n");
+
+/*-----------BERSAGLIO AFFONDATO-----------*/
+      }else{
+    printf("                              ----------------------------------------\n");
+    printf("                              |          BERSAGLIO AFFONDATO         |\n");
+    printf("                              ----------------------------------------\n");
+
+        c2--;
+
+      }
+/*-----------BERSAGLIO MANCATO-----------*/
+    }else if(mappa2[p2][p1]==0){
+    printf("                               --------------------------------------\n");
+    printf("                               |          BERSAGLIO MANCATO         |\n");
+    printf("                               --------------------------------------\n");
+        mappa3[p2][p1]=2;
+        change=1;
+
+/*-----------POSIZIONE GIA' COLPITA-----------*/
+
+    }else if(mappa2[p2][p1]==2){
+    printf("                             -------------------------------------------\n");
+    printf("                             |          POSIZIONE GIA' COLPITA         |\n");
+    printf("                             -------------------------------------------\n");
+        }
+
+
+    }while(change==0 && c2 > 0);
+
+/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+change=0;
+
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------PLAYER2 ATTACCO-----------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    if(c2>0){
+        do{
+            printf("                                  -------------------------------\n");
+            printf("                                  |           PLAYER2           |\n");
+            printf("                                  -------------------------------\n");
+            temp=0;
+
+/*-----------COORDINATE ATTACCO-----------*/
+ //STAMPA A VIDEO LA MAPPA PER OGNI COLPO TIRATO
+print_map(mappa4);
+
+/*-----------COORDINATE ATTACCO-----------*/
+
+            do{
+                printf("Inserisci le coordinate del punto in cui sparare nell'ordine (x;y): ");
+                scanf("%d",&p1);
+                scanf("%d",&p2);
+            }while(p1>10 || p1<1 || p2>10 || p2<1);
+            p1--;
+            p2--;
+/*---------------------------------------*/
+
+
+
+
+/*-----------BERSAGLIO COLPITO-----------*/
+        if (mappa[p2][p1]==1){
+
+        mappa[p2][p1]=2;
+        mappa4[p2][p1]=1;
+
+      if (mappa[p2-1][p1]==1 || mappa[p2][p1-1]==1 || mappa[p2+1][p1]==1 || mappa[p2][p1+1]==1){
+
+    printf("                                --------------------------------------\n");
+    printf("                                |          BERSAGLIO COLPITO         |\n");
+    printf("                                --------------------------------------\n");
+
+/*-----------BERSAGLIO AFFONDATO-----------*/
+      }else{
+    printf("                              ----------------------------------------\n");
+    printf("                              |          BERSAGLIO AFFONDATO         |\n");
+    printf("                              ----------------------------------------\n");
+
+        c--;
+
+      }
+/*-----------BERSAGLIO MANCATO-----------*/
+    }else if(mappa[p2][p1]==0){
+    printf("                               --------------------------------------\n");
+    printf("                               |          BERSAGLIO MANCATO         |\n");
+    printf("                               --------------------------------------\n");
+        mappa4[p2][p1]=2;
+        change=1;
+
+/*-----------POSIZIONE GIA' COLPITA-----------*/
+
+    }else if(mappa[p2][p1]==2){
+    printf("                             -------------------------------------------\n");
+    printf("                             |          POSIZIONE GIA' COLPITA         |\n");
+    printf("                             -------------------------------------------\n");
+        }
+
+
+        }while(change==0 && c>0);
+    }
+}while(c>0 && c2>0);
+
+if(c==0){
+    printf("                             -------------------------------------------\n");
+    printf("                             |            IL PLAYER2 HA VINTO!         |\n");
+    printf("                             -------------------------------------------\n");
+}
+else{
+    printf("                             -------------------------------------------\n");
+    printf("                             |            IL PLAYER1 HA VINTO!         |\n");
+    printf("                             -------------------------------------------\n");
+}
+
+    return 0;
+
+}
+
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------FUNZIONI---------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+
+//POSIZIONAMENTO NAVI CON CONTROLLI
+void deploy(int map[][C], int *x, int *y, int dir, int *control, int *n, int rem1, int rem2){
+
+    for(int j=rem1;j<*y+*n;j++){                   //I due contatori partono da p1-1 e p2-1 (nell'inizializzazione nel main) così da poter iniziare il controllo dello spazio la casella in alto a sinistra rispetto alla prima casella della nave.
+        for(int k=rem2;k<*x+*n;k++){               //Vengono posti minori di p1+c e di p2+c per far sì che il loop finisca quando j e k sono nella casella in basso a destra rispetto all'ultima casella della nave.
+            if(map[j][k]==1){                      //Nota che p1 e p2 sono rispettivamente ascissa e ordinata, mentre c è la dimensione della nave
+                *control=1;
+        printf("                               -------------------------------------\n");
+        printf("                               |         NAVI TROPPO VICINE        |\n");
+        printf("                               -------------------------------------\n");
+            break;
+            }
+        }
+        if(*control==1) break;
+    }
+
+if(*control==0 && *n>1){
+    if(dir==1){
+        if(*y==10-(*n-1) || *y==11-(*n-1)){
+            *control=1;   //Utilizzo la variabile n, che contiene la dimensione della nave, per calcolare in quale posizione uscirebbe dalla griglia.
+    printf("                               --------------------------------------\n");
+    printf("                               |            FUORI GRIGLIA           |\n");
+    printf("                               --------------------------------------\n");
+        }
+        else{
+            for(int i=0;i<*n;i++){
+                map[*y][*x]=1;
+                ++*y;
+            }
+        }
+    }else if(dir==2){
+        if(*x==10-(*n-1) || *x==11-(*n-1)) *control=1;
+
+        else{
+            for(int i=0;i<*n;i++){
+                map[*y][*x]=1;
+                ++*x;
+                }
+            }
+        }
+    }
+    --*n;
+}
+
+
+
+//STAMPA A VIDEO DELLA MAPPA
+void print_map(int map[][C]){
+
+    int k=10;
+
+        printf("  ^\n");
+    for(int i=0;i<10;i++){
+        if (k==10){
+            printf("10|  ");
+        }else{
+            printf("%d |  ",k);
+        }
+        k--;
+        for(int j=0;j<10;j++){
+            printf(" %d", map[i][j]);
+        }
+        printf("\n");
+    }
+    printf("     ---------------------->\n");
+    printf("      1 2 3 4 5 6 7 8 9 10\n");
+}
+
+
+//INIZIALIZZAZIONE DELLA MAPPA
+void init(int map[][C]){
+    for(int i=0;i<10;i++){
+        for(int j=0; j<10;j++){
+            map[i][j]=0;
+        }
+    }
+}
