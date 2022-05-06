@@ -1,0 +1,309 @@
+#include <stdio.h>
+#define R 24
+#define C 5
+
+//FUNCTIONS DECLARATION
+void menu();
+int rowinit(float lmat[][C], int row, int col);
+int colinit(float lmat[][C], int hour, int row, int col, char* string[]);
+int control(float ctrlmat[][C], int ctrlhour, int k);
+int colwrite(float wmat[][C],int whour, int col, char* string[]);
+int matwrite(float wmat[][C], int row, int col);
+int sizewrite(float wmat[][C], int row, int wsize);
+float avgsize(float avgmat[][C], int row, int isize);
+int arrinit(float arrmat[][C],int row, int col, char *string[]);
+int arrwrite(float arr[],int col, char *string[]);
+char overwrite(float mat[][C], int hour);
+char tostart();
+//-----------------------------------------------------------------------------
+
+
+/*--------------------MAIN--------------------*/
+int main(){
+
+    float mat[R][C], average;
+    int time, size, select;
+    char* string[5]={"Temperature", "Atmospheric pression", "Rain", "Snow", "Humidity"}, ow='Y',exit;
+
+    rowinit(mat,R,C);
+
+
+do{
+    do{
+        menu();
+        printf("\n-->");
+        scanf("%d",&select);
+
+    }while(select<1 || select>7);
+
+    switch(select){
+        case 1:
+
+
+                do{
+                    printf("Enter the time you want to write the weather: ");
+                    scanf("%d", &time);
+
+                    if(mat[time][0]!=100) ow=overwrite(mat, time);
+                }while(ow=='N' || ow=='n');
+
+                colinit(mat,time,R,C,string);
+                break;
+
+        case 2:
+            do{
+                printf("Enter the time of which you want to read the weather: ");
+                scanf("%d", &time);
+            }while(time<0 || time>R);
+
+            colwrite(mat,time,C,string);
+            break;
+
+        case 3:
+            matwrite(mat,R,C);
+            break;
+
+        case 4:
+            do{
+                printf("\nEnter the size you want to read\n1:Temperature\n2:Atmospheric pression\n3:Rain\n4:Snow\n5:Humidity\n");
+                scanf("%d", &size);
+            }while(size<1 || size>C);
+            sizewrite(mat,R,size);
+            break;
+
+        case 5:
+            do{
+                printf("\nEnter the size you want to average\n1:Temperature\n2:Atmospheric pression\n3:Rain\n4:Snow\n5:Humidity\n");
+                scanf("%d", &size);
+            }while(size<1 || size>C);
+
+            average=avgsize(mat,R,size);
+            printf("The average of the %s is %.2f", string[size-1], average);
+            break;
+
+        case 6:
+            arrinit(mat,R,C,string);
+            break;
+
+        case 7:
+            exit='Y';
+            break;
+        }
+
+    }while(exit!='Y' && exit!='y');
+    printf("\nTerminating process...");
+
+    return 0;
+
+}
+//-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+//MENU' FUNCTION
+void menu(){
+    printf("\n--------------------Menu---------------------\n");
+    printf("|  !1: Enter the weather data               |\n");
+    printf("|   2: Read the weather of a given time     |\n");
+    printf("|   3: Read the entire data                 |\n");
+    printf("|   4: Read a size of your choice           |\n");
+    printf("|   5: Read the average of a size           |\n");
+    printf("|   6: Read the average of every size       |\n");
+    printf("|   7: Terminate process                    |\n");
+    printf("---------------------------------------------\n");
+}
+
+//ROWS INITIALIZATION
+int rowinit(float lmat[][C], int row, int col){
+
+    for(int i=0;i<row;i++){
+        lmat[i][0]=100;
+        for(int j=1;j<col;j++){
+            lmat[i][j]=0;
+        }
+    }
+    return 0;
+}
+
+
+//OVERWRITE CONTROL
+char overwrite(float mat[][C], int hour){
+
+    char ow;
+        do{
+            printf("You already loaded this data. Do you want to overwrite?Y/N: ");
+            scanf(" %c", &ow);
+        }while(ow!='N' && ow!='n' && ow!='Y' && ow!='y');
+
+    return ow;
+}
+
+//COLUMS INITIALIZATION
+int colinit(float lmat[][C], int hour, int row, int col, char* string[]){
+
+        int error=0;
+
+        for(int i=0;i<col;i++){
+            do{
+                    if(error==1){
+                        printf("You entered the wrong value\n");
+                    }
+                printf("Enter %s: ", string[i]);
+
+                if(hour>=0 && hour<row){
+                    scanf("%f", &lmat[hour][i]);
+                    error=control(lmat,hour,i);
+                    printf("\n");
+                }
+            }while(error==1);
+        }
+
+            return 0;
+}
+
+//COLUMS INITIALIZATION CONTROL
+int control(float ctrlmat[][C], int ctrlhour, int k){
+
+    int error=0;
+
+    switch(k){
+        case 0:
+            if(ctrlmat[ctrlhour][0]<-10 || ctrlmat[ctrlhour][0]>45){
+                error=1;
+            }
+            break;
+        case 1:
+            if(ctrlmat[ctrlhour][1]<1010 || ctrlmat[ctrlhour][1]>1015){
+                error=1;
+            }
+            break;
+        case 2:
+            if(ctrlmat[ctrlhour][2]<0 || ctrlmat[ctrlhour][2]>50){
+                error=1;
+            }
+            break;
+        case 3:
+            if(ctrlmat[ctrlhour][3]<0 || ctrlmat[ctrlhour][3]>50){
+                error=1;
+            }
+            break;
+        case 4:
+            if(ctrlmat[ctrlhour][4]<0 || ctrlmat[ctrlhour][4]>100){
+                error=1;
+            }
+            break;
+    }
+
+    return error;
+}
+
+
+//WRITRING OF
+int colwrite(float wmat[][C],int whour, int col, char *string[]){
+    printf("\n");
+
+    for(int i=0;i<col;i++){
+        printf("%s: %.2f\n", string[i], wmat[whour][i]);
+    }
+
+    printf("\n");
+    return 0;
+}
+
+
+//WRITING OF THE ENTIRE MATRIX
+int matwrite(float wmat[][C], int row, int col){
+    printf("\n");
+
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            printf("|%.2f|", wmat[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\n");
+    return 0;
+}
+
+
+//WRITING OF EVERY TEMPERATURE OR ATMOSPHERIC PRESSION OR RAIN OR SNOW OR HUMIDITY
+int sizewrite(float wmat[][C], int row, int wsize){
+
+    printf("\n");
+
+    int i=0,z=0;
+    switch(wsize){
+        case 1:
+            for(i;i<row;i++){
+                printf("%.2f: %.2f\n",(float)i, wmat[i][0]);
+
+            }
+            break;
+        case 2:
+            for(i;i<row;i++){
+                printf("%.2f: %.2f\n",(float)i, wmat[i][1]);
+
+            }
+            break;
+        case 3:
+            for(i;i<row;i++){
+                printf("%.2f: %.2f\n",(float)i, wmat[i][2]);
+
+            }
+            break;
+        case 4:
+            for(i;i<row;i++){
+                printf("%.2f: %.2f\n",(float)i, wmat[i][3]);
+            }
+            break;
+        case 5:
+            for(i;i<row;i++){
+                printf("%.2f: %.2f\n",(float)i, wmat[i][4]);
+            }
+            break;
+    }
+
+    printf("\n");
+
+    return 0;
+}
+
+
+//CALCULATION OF THE AVERAGE OF A SIZE
+float avgsize(float avgmat[][C], int row, int isize){
+
+    float avg=0;
+
+    for(int i=0;i<row;i++){
+    avg=avg+avgmat[i][isize-1];
+    }
+    avg=avg/24;
+
+    return avg;
+}
+
+
+//CREATION OF AN ARRAY CONTAINING THE AVERAGE OF EACH SIZE
+int arrinit(float arrmat[][C],int row, int col, char *string[]){
+
+    float arr[col];
+
+    for(int i=1;i<col+1;i++){ //In the function avgsize the parameter "isize" counts as isize-1, so the for loop with start with i+1 will finish at col+1
+        arr[i-1]=avgsize(arrmat,row,i);
+    }
+    arrwrite(arr,col,string);
+
+
+    return 0;
+}
+
+
+//WRITING OF THE ARRAY THAT CONTAINS ALL SIZES AVERAGES
+int arrwrite(float arr[], int col, char *string[]){
+printf("\n\n\n");
+printf("Average of:");
+    for(int i=0;i<col;i++){
+        printf("\n%s: %.2f", string[i], arr[i]);
+    }
+
+}
