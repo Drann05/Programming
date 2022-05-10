@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="description" content="Solence">
+    	<meta name="keywords" content="HTML, CSS">
+    	<meta name="author" content="Gioele Spanò">
+    	<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale">
+		<title>Album</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	
+	<body>
+		<section class="intro">
+		<div id="Solence">
+			<img src="images/Solence.jpeg" alt="Solence" width="1000" heigth="746">
+		</div>
+		</section>
+
+		<div class="album">
+			<img src="images/Direction.jfif" alt="Direction" width="640" heigth="640">
+			<div class="table-box">
+				<table class="table">
+					<tr>
+						<th class="title">Song Number</th>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+					</tr>
+					<tr>
+						<th class="title">Song</th>
+						<td>Blackout</td>
+						<td>Animal in me</td>
+						<td>Rise Up</td>
+						<td>Direction</td>
+						<td>4 Good Reasons</td>
+						<td>Paralyzed</td>
+						<td>Snakes</td>
+					</tr>
+				</table>
+				<div class="formbox">
+					<form class="form">
+						<div class="form1">
+							<div class="input-div">
+								<label for="fname">Nome:</label>
+								<input type="text" id="fname" name="fname"><br> 
+							</div>
+							<div class="input-div">
+								<label for="fname">Indirizzo:</label>
+								<input type="text" id="fname" name="fname"><br>
+							<div class="input-div"> 
+								<label for="fname">CAP:</label>
+								<input type="text" id="fname" name="fname"><br>
+							</div>
+							<div class="input-div">
+								<label for="fname">Città:</label>
+								<input type="text" id="fname" name="fname"><br>
+							</div>
+							<div class="input-div">
+								<label for="fname">Email:</label>
+								<input type="email" id="fname" name="fname"><br>
+							</div>
+							<div class="input-div">
+								<label for="fname">Name:</label>
+								<input type="text" id="fname" name="fname"><br>
+							</div>
+						</div>
+						<!--<div class="form2">
+							<div class="input-div">
+								<label for="fname">Nome:</label>
+								<input type="text" id="fname" name="fname">
+							</div>
+							<div class="input-div">
+								<label for="fname">Indirizzo:</label>
+								<input type="text" id="fname" name="fname">
+							</div>
+							<div class="input-div"> 
+								<label for="fname">CAP:</label>
+								<input type="text" id="fname" name="fname">
+							</div>-->
+						</div>
+					</form>	
+				</div>
+			</div>
+		</div>
+		<section>
+		<center>
+			
+		</center>
+		</section>
+	</body>
+
+</html>
