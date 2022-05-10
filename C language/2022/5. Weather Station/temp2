@@ -1,0 +1,76 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	background: linear-gradient(to bottom, #04323a 25%, #403b3f 75%);
+	font-family: sans-serif;
+	font-size: 10pt;
+}
+.album{
+	display: flex;
+	align-items: flex-start;
+}
+
+.intro #Solence{
+	display: flex;
+	margin: 1vw;
+	justify-content: center;
+	gap: 20px;
+}
+.intro h1{
+	text-align: center;
+	font-size: 5vw;
+}
+.table-box{
+	box-sizing: border-box;
+	width: 100%;
+	border-collapse: collapse;
+	background-color: #1d120a;
+	width: 35%;
+}
+.formbox label{
+	color: #fff;
+	font-size: 20px;
+	font-weight: 600;
+	display: table-cell;
+}
+.formbox input{
+	margin: 5px;
+	color: #fff;
+	outline: none;
+	border:solid #000 0.5px;
+	padding: 5px;
+	background-color: #3c3f44;
+	display: table-cell;
+}
+.formbox{
+	margin: 20px;
+	height: 486px;
+}
+.form{
+	display: flex;
+	flex-direction: column;
+	flex-flow: column wrap;
+}
+
+.table .title{
+	background-color: #ee2828;
+}
+.table tr th{
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: 0.35px;
+	color: #FFFFFF;
+	padding: 12px;
+	border: 1px solid #dee2e685;
+}
+.table td{
+	font-size: 14px;
+	letter-spacing: 0.35px;
+	font-weigth: normal;
+	color: #f1f1f1;
+	background-color: #3c3f44;
+	padding: 8px;
+	text-align: center;
+}
