@@ -5,21 +5,27 @@
     	<meta name="keywords" content="HTML, CSS">
     	<meta name="author" content="Gioele Spanò">
     	<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Album</title>
 		<link rel="stylesheet" href="style.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
 	</head>
 	
 	<body>
-		<section class="intro">
-		<div id="Solence">
-			<img src="images/Solence.jpeg" alt="Solence" width="1000" heigth="746">
-		</div>
-		</section>
-
-		<div class="album">
-			<img src="images/Direction.jfif" alt="Direction" width="640" heigth="640">
-			<div class="table-box">
+		<ul>
+			<li><a href="#home">Home</a></li>
+			<li><a href="#home">Home</a></li>
+			<li><a href="#home">Home</a></li>
+			<li><a href="#home">Home</a></li>
+		</ul>
+		<div class="intro" id="home"></div>
+		
+		<div class="separator"></div>
+		
+			<div class="album-box">
+				<img src="images/direction.jpeg" width="800px" height="800px">
 				<table class="table">
 					<tr>
 						<th class="title">Song Number</th>
@@ -42,56 +48,7 @@
 						<td>Snakes</td>
 					</tr>
 				</table>
-				<div class="formbox">
-					<form class="form">
-						<div class="form1">
-							<div class="input-div">
-								<label for="fname">Nome:</label>
-								<input type="text" id="fname" name="fname"><br> 
-							</div>
-							<div class="input-div">
-								<label for="fname">Indirizzo:</label>
-								<input type="text" id="fname" name="fname"><br>
-							<div class="input-div"> 
-								<label for="fname">CAP:</label>
-								<input type="text" id="fname" name="fname"><br>
-							</div>
-							<div class="input-div">
-								<label for="fname">Città:</label>
-								<input type="text" id="fname" name="fname"><br>
-							</div>
-							<div class="input-div">
-								<label for="fname">Email:</label>
-								<input type="email" id="fname" name="fname"><br>
-							</div>
-							<div class="input-div">
-								<label for="fname">Name:</label>
-								<input type="text" id="fname" name="fname"><br>
-							</div>
-						</div>
-						<!--<div class="form2">
-							<div class="input-div">
-								<label for="fname">Nome:</label>
-								<input type="text" id="fname" name="fname">
-							</div>
-							<div class="input-div">
-								<label for="fname">Indirizzo:</label>
-								<input type="text" id="fname" name="fname">
-							</div>
-							<div class="input-div"> 
-								<label for="fname">CAP:</label>
-								<input type="text" id="fname" name="fname">
-							</div>-->
-						</div>
-					</form>	
-				</div>
-			</div>
-		</div>
-		<section>
-		<center>
-			
-		</center>
-		</section>
+			</div>	
 	</body>
 
 </html>
