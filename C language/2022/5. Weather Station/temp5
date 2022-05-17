@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="description" content="Information Technology">
+    	<meta name="keywords" content="HTML, CSS">
+    	<meta name="author" content="Gioele Spanò">
+    	<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Smart Cities</title>
+		<link rel="stylesheet" href="style.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+	</head>
+	<body>
+
+		<section class="header">
+			<ul>
+				<li><a href="#first">What are Smart Cities?</a></li>
+				<li><a href="#home">Home</a></li>
+				<li><a href="#home">Home</a></li>
+				<li><a href="#home">Home</a></li>
+			</ul>
+
+			<div class="center">
+				
+				<h1>SMART CITIES</h1>
+				<img src="images/cityA.jpg">
+			</div>
+		</section>
+
+		<div class="sepblack"><hr class="separator-black"></div>
+
+		<section class="section">
+			<div class="box1">
+				<div id="first" class="center">
+					<h2>What are Smart Cities?</h2>
+					<p>Smart Cities are urban areas where, thanks to digital technologies, it's possible to improve the infrastructures and services to citizens making them more efficient. The definition of Smart City starts from the digital transformation and the use of the IoT (Internet of Things) that, in short, describes physical objects (even daily ones) with processing abilities, like a computer.<br>
+					In this case we're talking about smart cities, which is a much wider concept, in fact, other than smart, the city must be sustainable, efficient and innovative.</p>
+				</div>
+
+				<div class="sepwhite"><hr class="separator-white"></div>
+				
+				<div class="features">
+					<div class="text-box-left">
+						<h2>Features:</h2>
+						<ul>
+							<li><b>Smart People:</b> citizens must be involved and made involved. 
+							We talk about bottom-up decision-making and participatory policy.</li>
+
+							<li><b>Smart Governance:</b> the administration must give centrality to human 
+							capital, environmental resources, relations with the community's assets</li>
+
+							<li><b>Smart Economy:</b> the economy and urban commerce must be aimed at increasing productivity and employment within the city through technological innovation. An economy based on participation and collaboration and which focuses on research and innovation.</li>
+
+							<li><b>Smart Living</b> the level of comfort and well-being that must be guaranteed to citizens linked to aspects such as health, education, safety, culture, etc. they are also of priority importance.</li>
+
+							<li><b>Smart Mobility</b> intelligent mobility solutions, from e-mobility to sharing mobility to other forms of mobility management, must look at how to reduce costs, reduce environmental impact and optimize energy savings.</li>
+
+							<li><b>Smart Environment</b> sustainable development, low environmental impact and energy efficiency are priority aspects of the city of the future.</li>
+						</ul>
+					</div>
+					<div class="images-right">
+						<img src="images/photo1.png">
+						<img src="images/photo2.jpg">
+					</div>
+				</div>
+				<p>One of the most famous smart cities in Europe is Amsterdam, invoked for decades as a symbol of "alternative mobility" and as an example to follow. Thanks to the choices made by the local government, citizens have been accustomed to using non-polluting energy sources, and for this reason alternatives. For example, increasing the use of means of transport such as scooters, bicycles etc. creating easily accessible cycle paths. For this reason the Dutch city can be considered a champion of the "energy transition".</p>
+				<div class="sepwhite"><hr class="separator-white"></div>
+				<div class="center">
+					<h2>Smart Cities in Italy</h2>
+					<p>In 2020, FPA’s ranking focused on the digital transformation path of Italian cities.
+						The 107 provincial capital cities were evaluated basing them on 8 indicators: </p>
+				</div>
+			</div>
+			<div class="box2">
+				<div class="boxes">
+					
+					<p>Online accessibility of public services</p>
+									
+					<p>Availability of public utilities apps</p>
+									
+					<p>Adoption of digital platform </p>					
+
+					<p>Use of  social media</p>					
+					
+					<p>Open data release</p>
+										
+					<p>transparency</p>
+										
+					<p>Implementation of public WI-FI networks</p>
+					
+					<p>Smart network</p>
+				</div>
+			</div>
+			<div class="box3">
+				<div class="center">
+					<h3>Top 10 italian smart cities</h3>
+				</div>
+					<div class="it-cities">
+						<label>Florence</label>
+						<img src="images/Florence.jpg" width="32%" height="20%" alt="Florence">
+						<label>Florence</label>
+						<img src="images/Bologna.jpg" width="32%" height="20%" alt="Bologna">
+						<label>Florence</label>
+						<img src="images/Milano.jpg" width="32%" height="20%" alt="Milan">
+						<label>Florence</label>
+						<img src="images/Rome.jpg" width="32%" height="20%" alt="Rome">
+						<img src="images/Modena.jpg" width="32%" height="20%" alt="Modena">
+						<img src="images/Bergamo.jpg" width="32%" height="20%" alt="Bergamo">
+						<img src="images/Turin.jpg" width="32%" height="20%" alt="Turin">
+						<img src="images/Trento.jpg" width="32%" height="20%" alt="Trento">
+						<img src="images/Cagliari.jpg" width="32%" height="20%" alt="Cagliari">
+						<img src="images/Venice.jpg" width="32%" height="20%" alt="Venice">
+					</div>
+			</div>
+		</section>
+	
+	</body>
+</html>
