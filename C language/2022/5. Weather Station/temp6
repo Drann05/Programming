@@ -1,0 +1,147 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+
+}
+html{
+	scroll-behavior: smooth;
+}
+html,body{
+	height: 100%;
+}
+body{
+	background-color: #eff;
+}
+.header ul{
+  list-style-type: none;
+  margin: 0;
+  background-color: #000;
+  overflow: hidden;
+}
+.header li{
+	display: inline;
+}
+.header li a{
+	font-size: 20px;
+	display: inline-block;
+	color: #fff;
+	padding: 30px;
+	text-decoration: none;
+	transition: 0.5s;
+}
+.header li a:hover{
+	background-color: #999;
+}
+.sepblack{
+	margin: 3vw;
+}
+.separator-black{
+	margin: 0 15%;
+	color: black;
+	color: #000;
+	background-color: #000;
+	height: 2px;
+}
+.separator-white{
+	margin: 2% 15%;
+	color: #fff;
+	background-color: #fff;
+	height: 1px;
+
+}
+.center{
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+}
+.header .center img{
+  	height: 41%;
+  	width: 57%;
+}
+
+.header .center h1{
+	text-align: center;
+	font-size: 5vw;
+	color: #000;
+}
+.section{
+	border-radius: 30px;
+	background: #000;
+	margin: 0 10%;
+	padding:30px;
+}
+.section .box1 p{
+	font-size: 25px;
+	color: #ccc;
+	text-align: center;
+	margin: 2vw 15vw;
+}
+.section .text-box-left{
+	text-align: left;
+	width: 60%;
+	margin-left: 5%;
+	margin-top: 2%;
+}
+h2{
+	font-size: 45px;
+	color: white;
+}
+h3{
+	font-size: 35px;
+	color: white;
+}
+.section .text-box-left ul{
+	color: #ccc;
+	font-size: 25px;
+}
+.section .text-box-left ul li{
+	margin-bottom: 20px;
+}
+.section p{
+	font-size: 25px;
+	color: #ccc;
+}
+.section .images-right{
+	display: flex;
+	flex-flow: column;
+	content: "";
+	clear: both;
+	display: table;
+}
+.section .images-right img{
+	margin-top: 10%;
+	margin-left: 14%;
+	width: 25vw;
+	height: 13vw;
+}
+
+.section .features{
+	display: flex;
+}
+.section .box2 .boxes{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.section .box2 .boxes p{
+	background-color: #268282;
+	text-align: center;
+	border: 3px solid #31a8a8;
+	border-radius: 20px;
+	width: 10%;
+	padding: 0 4vw;
+	margin: 1vw 0;
+}
+.section .box3 .it-cities{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.section .box3 .it-cities img{
+	margin: 10px 0;
+}
+.section .box3 .it-cities label{
+	color: white;
+}
